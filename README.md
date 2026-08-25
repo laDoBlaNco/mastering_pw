@@ -1,7 +1,7 @@
 # Mastering Playwright (TypeScript/JavaScript)
 ## mastering_pw
 
-As a career changer, coming from 20 years in the BPO space, have of which being 100% focused on QA Processes and Management and looking for an on-ramp into remote tech work, there aren't a lot of platforms that welcome or even allow a move based solely on effort. This is actually one that does. Taking advantage of my passion and knowledge in JavaScript I'm focusing time to master PlayWright and see if this is the on-ramp i'm looking for.
+As a career changer, coming from 20 years in the BPO space, half of which being 100% focused on QA Process Management and looking for an on-ramp into remote tech work, there aren't many platforms that welcome or even allow a move based solely on effort. PlayWright is actually one that does. Taking advantage of my passion and knowledge for everything TypeScript/JavaScript I'm focusing time to master PlayWright and determine if this is the on-ramp i'm looking for.
 
 Three reasons for this focus:
 - The Saturation Factor: General software engineering is flooded at the entry level. However, QA Automation is actively experiencing a talent shortage. Companies are aggressively phasing out manual testers in favor of automation, but they cannot find enough people who actually know how to write the code (JavaScript/Python) to build the testing frameworks.
