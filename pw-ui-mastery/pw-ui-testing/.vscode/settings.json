@@ -1,0 +1,6 @@
+{
+  // The Playwright extension's model rebuild hangs when Git is disabled.
+  // Global git.enabled is now true; this is a safety net in case Settings Sync
+  // ever flips it back off.
+  "git.enabled": true
+}
