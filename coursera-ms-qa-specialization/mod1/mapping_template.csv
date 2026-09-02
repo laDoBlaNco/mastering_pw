@@ -1,0 +1,8 @@
+User Action,Presentation Layer,Application Layer,Expected Status Code,Data Layer
+"Step 0 — Confirm 'Submit' button on Login page. '<button type=""submit"" class=""inline-flex items-center px-4 py-2 rounded-md text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-60 disabled:cursor-not-allowed bg-indigo-600 hover:bg-indigo-700 focus-visible:outline-indigo-600 w-full justify-center"">",,,,
+Step 1 — Load the catalogue,Catalogue grid,GET /api/courses,200,Reads rows from the courses table
+Step 2 — View a single course,Detail page,GET /api/courses/{id},200,Reads one course row by id
+Step 3 — Filter by level,Filtered grid,GET /api/courses?level=beginner,200,Reads filtered rows from the courses table
+Step 4 — Search by title,Search results,GET /api/courses?search=python,200,Reads matching rows from the courses table
+Step 5 — Add a course to the cart,Cart count change,POST /api/cart/items,201,Write a cart line after checking if the course exists in the courses table
+Step 6 — Submit a payment with a special character,Error message,POST /api/checkout,500,Data layer was never reached because the request failed first
