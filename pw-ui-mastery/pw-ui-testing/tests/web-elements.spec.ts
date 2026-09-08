@@ -142,3 +142,79 @@ test("Reusing locators", async ({ page }) => {
   // and locator assertions also return a promise so we need to use await
   await expect(emailInputField).toHaveValue("anotherTest@email.com");
 });
+
+// 4 main ways to extract values with pw
+test("Extracting Values", async ({ page }) => {
+  // extracting text
+  const basicFormSection = page.locator("nb-card", { hasText: "Basic Form" });
+  const submitButtonText = await basicFormSection
+    .getByRole("button")
+    .textContent();
+  // console.log(submitButtonText); // this console logs to the  Test Results console below or the console in the ui
+  // trace
+  // another look at assertions/validations which we can use against our new const
+  expect(submitButtonText).toEqual("Submit"); // confirmed this is case-sensitive
+
+  // Extracting multiple text values:
+  const allRadioButtonValues = await page.locator("nb-radio").allTextContents();
+  // console.log(allRadioButtonValues); // results as an array since the locator isn't unique, then we work with the array
+  expect(allRadioButtonValues).toContain("Option 1"); // partial match since we use 'toContain' rather than 'toEqual'
+
+  // Extracting input field values
+  const emailField = basicFormSection.getByRole("textbox", { name: "Email" });
+  await emailField.fill("test@test.com");
+  const emailFieldValue = await emailField.inputValue();
+  console.log(emailFieldValue);
+  expect(emailFieldValue).toEqual("test@test.com");
+
+  // extract attribute value
+  const emailPlaceholder = await emailField.getAttribute("placeholder");
+  console.log(emailPlaceholder);
+});
+
+// Assertions are the form of validation in the test case. Without validation in the test, its not a test.
+// PW has 2 types of assertions:
+test("Assertions", async ({ page }) => {
+  // generic assertions - 'expect something to be something or contain something'
+
+  const basicFormSectionButton = page
+    .locator("nb-card", { hasText: "Basic Form" })
+    .getByRole("button");
+
+  const value = 5;
+  expect(value).toEqual(5); // (method) GenericAssertions<void>.toEqual(expected: unknown): void
+
+  const submitButtonText = await basicFormSectionButton.textContent();
+  expect(submitButtonText).toEqual("Submit");
+
+  // locator assertion is much more powerful. Rather than putting a value in my 'expect(value)'
+  // I put in an actual locator which gives me whole new list of methods to use
+  // also locator assertion cares about and waits for destired application state, while generic doesn't care
+  await expect(basicFormSectionButton).toHaveText("Submit"); // (method) LocatorAssertions.toHaveText
+
+  // soft assertion is a third type, but more of an softer version of the two types above
+  await expect.soft(basicFormSectionButton).toHaveText("Submit");
+  await basicFormSectionButton.click(); // even if the 'soft' assertion fails, this still runs
+});
+
+// auto-waiting concept direclty impacts the stability of our tests
+// For promises we need to use the keyward 'await' in order for it to work. Promises are key to Playwright's ability to
+// wait for certain test states. But what is the promise waiting for? https://playwright.dev/docs/actionability
+// On that doc we find a table showing what the promise methods are waiting for, such as, Visibility, Stability, Recieving
+// Events, Enablement, Being Editable, etc. And the method is only executed when all of those items (if applicable) are
+// satisfied. If any of those items aren't satisfied then PW will wait for it up to 30 seconds by default, before it times
+// out. it seems that some methods wait for up to 5 states, but other don't wait at all. And other methods simply don't
+// have the auto-waiting feature. If the method doesn't have the auto-wait feature then it won't wait beyond a normal
+// promise behavior. If the page isn't ready, it'll run regardless. 
+
+test('Generated test', async({page}) => {
+  // we can use pw's built-in tools (tool section of vscode testing ui) to find and generate our locators, etc
+  await page.getByRole('textbox', { name: 'Email address' }).fill('test@test.com');
+
+  // another option is using 'Record new' with is like recording a macro in Excel. 
+  // and just like VBA it'll give us more than we need so we just go through and clean it up.
+
+  // the third option is record at cursor. which is the same as above recording macro, but instead of creating a new
+  // test file like Record new, it'll start recording and adding steps from the same test where I want to continue
+  
+})
