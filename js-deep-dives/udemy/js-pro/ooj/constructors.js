@@ -1,5 +1,14 @@
 // classes are blueprints of functionality
 class Triangle {
+  // validate data and set properties
+  // constructor ALWAYS returns 'undefined'
+  constructor(a, b) {
+    if (!Number.isFinite(a) || a <= 0) throw new Error(`Invalid a: ${a}`);
+    if (!Number.isFinite(b) || b <= 0) throw new Error(`Invalid a: ${b}`);
+    this.a = a;
+    this.b = b;
+  }
+
   getArea() {
     return (this.a * this.b) / 2;
   }
@@ -13,33 +22,11 @@ class Triangle {
   }
 }
 
-// instantiation
-let myTri = new Triangle();
-myTri.a = 3;
-myTri.b = 4;
-console.log(myTri.getArea());
-console.log(myTri.getHypotenuse());
+let myTri2 = new Triangle(5, 12);
+let myTri3 = new Triangle(2, 4);
+console.log(myTri2, myTri3);
 
-let firstTri = new Triangle();
-console.log(firstTri.getArea());
-console.log(firstTri.getHypotenuse());
-firstTri.a = 3;
-firstTri.b = 4;
-console.log(firstTri.getArea());
-console.log(firstTri.getHypotenuse());
+console.log(new Triangle(1,2));
+// console.log(new Triangle(1,'as'))
+console.log(new Triangle(1,[]))
 
-let secondTri = new Triangle();
-secondTri.a = 5;
-secondTri.b = 12;
-console.log(secondTri.getHypotenuse());
-
-console.log(firstTri, secondTri);
-
-// triangle is still an object
-console.log(typeof myTri);
-
-// js knows its an instance of Triangle
-console.log(myTri instanceof Triangle);
-
-console.log(myTri.sayHi());
-console.log(firstTri.sayHi());
