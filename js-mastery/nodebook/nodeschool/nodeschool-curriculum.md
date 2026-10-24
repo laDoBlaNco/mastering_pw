@@ -1,14 +1,14 @@
 nodeschool-curriculum.md
 # Node.js Systems Mastery Roadmap
 
-This repository tracks my journey from advanced JavaScript hobbyist to professional Node.js systems engineer. The curriculum is sequentially ordered to build mastery across engine primitives, binary memory allocation, native C++ bindings, advanced control flow, and network architecture.
+This repository tracks my journey from advanced JavaScript hobbyist to professional Node.js systems engineer. The curriculum is sequentially ordered to build mastery across engine primitives, binary memory allocation, native C++ bindings, advanced control flow, and network architecture. (Resources are dated, but the selected concepts are real and relevant)
 
 ## 🗺️ Master Tracking Checklist
 
 ### Phase 1: Engine Primitives & Memory Mechanics
 *Focuses on execution contexts, scope resolution, and physical object lookups in memory before handling heavy backend operations.*
 
-- [ ] **1. learnyounode**
+- [x] **1. learnyounode**
   * **Core Focus:** Grounding in raw, framework-free server execution and native OS interaction (`fs`, `path`, `http`).
   * **Installation:** `npm install -g learnyounode`
 - [ ] **2. planetproto**
