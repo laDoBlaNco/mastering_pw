@@ -11,7 +11,7 @@ This repository tracks my journey from advanced JavaScript hobbyist to professio
 - [x] **1. learnyounode**
   * **Core Focus:** Grounding in raw, framework-free server execution and native OS interaction (`fs`, `path`, `http`).
   * **Installation:** `npm install -g learnyounode`
-- [ ] **2. planetproto**
+- [x] **2. planetproto**
   * **Core Focus:** Stripping away syntax sugar to expose how execution context (`this`) and the prototype chain map object links in memory.
   * **Installation:** `npm install -g planetproto`
 - [ ] **3. scope-chains-closures**
