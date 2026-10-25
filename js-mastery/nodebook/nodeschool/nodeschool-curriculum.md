@@ -14,7 +14,7 @@ This repository tracks my journey from advanced JavaScript hobbyist to professio
 - [x] **2. planetproto**
   * **Core Focus:** Stripping away syntax sugar to expose how execution context (`this`) and the prototype chain map object links in memory.
   * **Installation:** `npm install -g planetproto`
-- [ ] **3. scope-chains-closures**
+- [x] **3. scope-chains-closures**
   * **Core Focus:** Deeply mastering lexical environment states, scope chains, and garbage collection mechanics to prevent production memory leaks.
   * **Installation:** `npm i @workshoppers/scope-chains-closures -g`
 
