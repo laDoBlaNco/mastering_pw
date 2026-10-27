@@ -21,15 +21,11 @@ This repository tracks my journey from advanced JavaScript hobbyist to professio
 ---
 
 ### Phase 2: Binary Buffers, System Bindings & I/O
-*Transitions directly into systems architecture. Looks under the hood of Node.js to bridge JavaScript, raw memory, and the underlying C++ layer (libuv/V8).*
+*Transitions directly into some systems architecture.*
 
-- [ ] **4. bytewiser**
+- [x] **4. bytewiser**
   * **Core Focus:** Manipulating unmanaged raw binary memory blocks, buffers, and typed data packets directly inside the runtime.
   * **Installation:** `npm install -g bytewiser`
-- [ ] **5. goingnative**
-  * **Core Focus:** Systems-level look at Node architecture. Exploring how JavaScript compiles down and communicates across the boundary to native C++ add-ons using the V8 API.
-  * **Installation:** `npm install -g goingnative`
-  * *Note: Requires a local build toolchain installed on your machine (`build-essential`, Xcode CLI tools, or VS C++ build tools).*
 - [ ] **6. stream-adventure**
   * **Core Focus:** Mastering backpressure and the stream API. Learning to parse and pipe high-volume data files incrementally without overwhelming server memory limits.
   * **Installation:** `npm install -g stream-adventure`
