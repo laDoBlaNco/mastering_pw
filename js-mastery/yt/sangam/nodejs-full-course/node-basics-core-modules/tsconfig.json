@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Base Options */
+    "target": "ES2022",                          /* Specify ECMAScript target version */
+    "module": "NodeNext",                        /* Specify module code generation */
+    "moduleResolution": "NodeNext",              /* Validate how modules are resolved */
+    "lib": ["ES2022"],                           /* Specify library files to be included */
+    
+    /* Strictness */
+    "strict": true,                              /* Enable all strict type-checking options */
+    "noImplicitAny": true,                       /* Raise error on expressions and declarations with an implied 'any' type */
+    "strictNullChecks": true,                    /* Enable strict null checks */
+    
+    /* Interop & Optimization */
+    "esModuleInterop": true,                     /* Emit additional JavaScript to ease importing CommonJS modules */
+    "forceConsistentCasingInFileNames": true,    /* Disallow inconsistently-cased references to the same file */
+    "skipLibCheck": true,                        /* Skip type checking of declaration files (*.d.ts) */
+    "types": ["node"],
+
+    /* Output Environment */
+    "outDir": "./dist",                          /* Redirect output structure to the directory */
+    "rootDir": "./src",                          /* Specify the root directory of input files */
+    "sourceMap": true                            /* Generates corresponding '.map' file for debugging */
+  },
+  "include": ["src/**/*"],                       /* Specifiy file glob patterns to compile */
+  "exclude": ["node_modules", "dist"]            /* Specify file glob patterns to inject or skip */
+}
