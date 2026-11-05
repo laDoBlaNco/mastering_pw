@@ -11,10 +11,19 @@ const friends = [
   { id: 2, name: "Albert Einstein" },
 ];
 
+
 server.on("request", (req, res) => {
   // req and res are streams. Readable and Writeable respectiviely
   const items = req.url.split("/");
-  if (items[1] === "friends") {
+  if (req.method === "POST" && items[1] === "friends") {
+    req.on("data", (data) => {
+      const friend = data.toString();
+      console.log("Request:", friend);
+      friends.push(JSON.parse(friend));
+    });
+    req.pipe(res); // no need to res.end() since .pipe() takes of that
+    // res.end();
+  } else if (req.method === "GET" && items[1] === "friends") {
     // res.writeHead(200, {
     //   "Content-Type": "application/json",
     // });
@@ -25,15 +34,11 @@ server.on("request", (req, res) => {
       res.end(JSON.stringify(friends[friendIndex]));
     } else {
       res.end(
-        JSON.stringify([
-          { id: 0, name: "Nikola Tesla" },
-          { id: 1, name: "Sir Isaac Newton" },
-          { id: 2, name: "Albert Einstein" },
-        ]),
+        JSON.stringify(friends),
       );
     }
     res.end();
-  } else if (items[1] === "messages") {
+  } else if (req.method === "GET" && items[1] === "messages") {
     res.setHeader("Content-Type", "text/html");
     res.write("<html>");
     res.write("<body>");
@@ -49,5 +54,4 @@ server.on("request", (req, res) => {
     res.end();
   }
 });
-
 server.listen(PORT, () => console.log(`listening on port ${PORT}`));
