@@ -80,4 +80,4 @@ class MyStream extends Readable {
 }
 
 const myStream = new MyStream();
-myStream(process.argv[2]).pipe(process.stdout);
+myStream(process.argv[2]).pipe(stdout);
