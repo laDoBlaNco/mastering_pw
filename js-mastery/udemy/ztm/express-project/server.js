@@ -1,45 +1,32 @@
 const express = require("express");
 
+const friendsRouter = require('./routes/friends.router');
+const messagesRouter = require('./routes/messages.router');
+
 const app = express();
 const PORT = 3000;
 
-const friends = [
-  {
-    id: 0,
-    name: "Alberto Einstein",
-  },
-  {
-    id: 1,
-    name: "Sir Isaac Newton",
-  },
-];
-
-// Express handles most of the boilerplate under the hood.
-app.get("/friends", (req, res) => {
-  res.json(friends); // express will set the content-type and stringify by itself
+app.use((req, res, next) => {
+  const start = Date.now();
+  next();
+  // actions go here for the upstream response. This middleware at this
+  // point gets paused and sits on the stack waiting for the upstream
+  // but in this context it only works on synchronous code. with async it
+  // breaks as they event loop doesn't wait before unwinding the stack.
+  // other frameworks use async middleware but in express I would need to
+  // use event listeners for example to listen for 'finish', when working with
+  // async code.
+  const delta = Date.now() - start;
+  console.log(`${req.method} ${req.baseUrl}${req.url} ${delta}ms`);
 });
 
-// parameterized routes
-app.get("/friends/:friendId", (req, res) => {
-  const friendId = +req.params.friendId; // no string manipulation to parse urls with express
-  // good to validate
-  const friend = friends[friendId];
-  if (friend) {
-    res.status(200).json(friend);
-  } else {
-    res.status(404).json({
-      error: "Friend does not exist",
-    });
-  }
-});
+// express also includes some builtin middleware as well. express.json
+// helps us parse json without all the manual manipulation
+// header must be set to 'Content-Type':'application/json' to work
+app.use(express.json());
 
-app.get("/messages", (req, res) => {
-  res.send("<ul><li>Hellooooo Albert!</li></ul>");
-});
-
-app.post("/messages", (req, res) => {
-  console.log("Updating messages.");
-});
+app.use("/friends", friendsRouter);
+app.use("/messages", messagesRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT: ${PORT}`);
