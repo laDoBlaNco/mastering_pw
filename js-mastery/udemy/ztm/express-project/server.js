@@ -1,9 +1,14 @@
 const express = require("express");
+const path = require("node:path");
 
-const friendsRouter = require('./routes/friends.router');
-const messagesRouter = require('./routes/messages.router');
+const friendsRouter = require("./routes/friends.router");
+const messagesRouter = require("./routes/messages.router");
 
 const app = express();
+
+app.set("view engine", "hbs");
+app.set('views',path.join(__dirname,'views'));
+
 const PORT = 3000;
 
 app.use((req, res, next) => {
@@ -20,10 +25,19 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.baseUrl}${req.url} ${delta}ms`);
 });
 
+// another middleware is for serving static websites
+app.use("/site", express.static(path.join(__dirname, "public")));
 // express also includes some builtin middleware as well. express.json
 // helps us parse json without all the manual manipulation
 // header must be set to 'Content-Type':'application/json' to work
 app.use(express.json());
+
+app.get('/', (req,res) => {
+  res.render('index.hbs', {
+    title: 'My Friends Are Very Clever',
+    caption: "Let's go skiing!",
+  })
+})
 
 app.use("/friends", friendsRouter);
 app.use("/messages", messagesRouter);
